@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit CheeseListing{% endblock %}
+
+{% block body %}
+
+
+
+    <h1>Edit CheeseListing</h1>
+
+    {{ include('cheese_listing/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_cheeses') }}" class="btn-sm btn btn-primary">back to list</a>
+
+    {{ include('cheese_listing/_delete_form.html.twig') }}
+
+{% endblock %}

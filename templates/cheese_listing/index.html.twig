@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CheeseListing index{% endblock %}
+
+{% block body %}
+
+    <h1>CheeseListing index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>IsPublished</th>
+                <th>Slug</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cheese_listing in cheese_listings %}
+            <tr>
+                <td>{{ cheese_listing.id }}</td>
+                <td>{{ cheese_listing.title }}</td>
+                <td>{{ cheese_listing.description }}</td>
+                <td>{{ cheese_listing.price }}</td>
+                <td>{{ cheese_listing.isPublished ? 'Yes' : 'No' }}</td>
+                <td>{{ cheese_listing.slug }}</td>
+                <td>{{ cheese_listing.createdAt ? cheese_listing.createdAt|ago : '' }}</td>
+                <td>{{ cheese_listing.updatedAt ? cheese_listing.updatedAt|ago : '' }}</td>
+                <td >
+                    <div class="d-flex">
+                        <a href="{{ path('app_cheese_show', {'id': cheese_listing.id}) }}" class="btn-sm btn btn-success">show</a>
+                        <a href="{{ path('app_cheese_edit', {'id': cheese_listing.id}) }}" class="btn-sm btn btn-warning">edit</a>
+                    </div>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_cheese_new') }}" class="btn btn-success btn-sm float-end mt-3">Create new</a>
+{% endblock %}

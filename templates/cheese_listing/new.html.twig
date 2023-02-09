@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New CheeseListing{% endblock %}
+
+{% block body %}
+    <h1>Create new CheeseListing</h1>
+
+    {{ include('cheese_listing/_form.html.twig') }}
+
+    <a href="{{ path('app_cheeses') }}"class="btn-sm btn btn-primary" >back to list</a>
+{% endblock %}

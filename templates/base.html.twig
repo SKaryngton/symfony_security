@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </head>
+    <body>
+    <nav class="navbar navbar-expand-lg bg-light"  {{ is_granted('ROLE_PREVIOUS_ADMIN') ? 'style="background-color: red ! important"' }}>
+
+        <div class="container-fluid">
+
+            <a class="navbar-brand" href="{{ path('app_cheeses') }}">Cheese</a>
+
+
+             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                 <a class="nav-link "  href="{{ path('api_entrypoint') }}">API</a>
+                 <a class="nav-link "  href="{{ path('app_logout') }}">Log Out</a>
+             {% else%}
+                 <a class="nav-link "  href="{{ path('app_login') }}">Log In</a>
+             {% endif %}
+        </div>
+    </nav>
+    <div class="container">
+        {% block body %}{% endblock %}
+    </div>
+    </body>
+</html>
